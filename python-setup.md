@@ -1,9 +1,7 @@
 # Setting up Python environments, Jupyter notebooks and Pyspark
 
-<!-- MarkdownTOC -->
-
-- Installing Homebrew
-- Installing python for common purposes \(or not\)
+- [Installing Homebrew](#Installing-Homebrew)
+- [Installing python for common purposes \(or not\)](#Installing-python-for-common-purposes-\(or-not\))
 - Installing pandoc
 - Step 1: Install pyenv, virtualenv, and pyenv-virtualenv
 - Step 2: Create an isolated python environment
@@ -24,9 +22,6 @@
   - pyenv which
   - pyenv local
   - Check libraries availability
-
-<!-- /MarkdownTOC -->
-
 
 Some info beforehand
 * [pyEnv Command Reference](https://github.com/pyenv/pyenv/blob/master/COMMANDS.md)
@@ -262,9 +257,9 @@ Note: To use Python 2 instead of Python 3 we should do `ipython2 --profile=pyspa
 
 ### Configuring PySpark with Jupyter Notebook
 
-```
-# "/Users/mikel/.pyenv/versions/3.4.5/envs/jupyter3/bin/python"
-nano ~/Library/Jupyter/kernels/pyspark/kernel.json
+Create the kernel configuration file `nano ~/Library/Jupyter/kernels/pyspark/kernel.json` with the content below:
+
+```json
 {
     "display_name": "PySpark (Spark 2.2.1)",
     "language": "python",
