@@ -1,7 +1,37 @@
 # Setting up Python environments, Jupyter notebooks and Pyspark
 
+<!-- MarkdownTOC -->
+
+- Installing Homebrew
+- Installing python for common purposes \(or not\)
+- Installing pandoc
+- Step 1: Install pyenv, virtualenv, and pyenv-virtualenv
+- Step 2: Create an isolated python environment
+  - See all available python versions for pyenv
+  - Install the python versions you need
+  - Potential errors installing python version
+- Step 3: Creating virtual environments
+- Step 4: Configuring virtual evironments
+- Installing and configuring Spark
+  - Downloading Spark
+  - Configuring PySpark with IPython Shell
+  - Creating pyspark kernel
+  - Configuring PySpark with Jupyter Notebook
+  - Confirming installation on Jupyter kernel list
+  - The final check of Pyspark-Jupyter combo
+- Some useful commands
+  - Check where Jupyter is reading its configuration files
+  - pyenv which
+  - pyenv local
+  - Check libraries availability
+
+<!-- /MarkdownTOC -->
+
+
 Some info beforehand
+* [pyEnv Command Reference](https://github.com/pyenv/pyenv/blob/master/COMMANDS.md)
 * http://apple.stackexchange.com/questions/209572/how-to-use-pip-after-the-os-x-el-capitan-upgrade
+* http://akbaribrahim.com/managing-multiple-python-versions-with-pyenv/
 * http://www.alfredo.motta.name/create-isolated-jupyter-ipython-kernels-with-pyenv-and-virtualenv/
 * https://medium.com/@henriquebastos/the-definitive-guide-to-setup-my-python-workspace-628d68552e14#.tw1jcq9jt
 
@@ -84,7 +114,7 @@ xcode-select --install
 
 More problems can be discover [here](https://github.com/yyuu/pyenv/wiki/Common-build-problems).
 
-## Creating virtual environments
+## Step 3: Creating virtual environments
 
 Jupyter supports many kernels. This allows a single Jupyter install to create notebooks for Python2, Python3, R, Bash and many other languages
 
@@ -96,7 +126,7 @@ pyenv virtualenv 3.6.0 ipython3
 pyenv virtualenv 3.6.0 tools3
 ```
 
-### Configuring virtual evironments
+## Step 4: Configuring virtual evironments
 
 ```bash
 
@@ -133,6 +163,7 @@ pip install Pillow # The friendly PIL fork (Python Imaging Library) - http://pil
 pip install xlrd # Working with Excel Files in Python - http://www.python-excel.org/
 pip install bs4 # Beautiful Soup is a Python library for pulling data out of HTML and XML files - ttps://www.crummy.com/software/BeautifulSoup/
 pip install dbfread # Read DBF Files with Python - https://dbfread.readthedocs.io/en/latest/
+pip install pyldavis
 pyenv deactivate
 
 # Now let’s install tools which run on Python3
@@ -213,13 +244,9 @@ sys.path.insert(0, os.path.join(spark_home, 'python/lib/py4j-0.10.4-src.zip'))
 exec(open(os.path.join(spark_home, 'python/pyspark/shell.py')).read())
 ```
 
-Verify that this works.
-
-todo: python 3 should be supported by spark 2.2 so we have to try 
-# we have to use ipython2 instead of ipython because python3 is not supported yet by pyspark
+Try pyspark with ipython with `ipython --profile=pyspark`:
 
 ```
-ipython --profile=pyspark
 Welcome to
       ____              __
      / __/__  ___ _____/ /__
@@ -270,4 +297,79 @@ print (y)
 import matplotlib.pyplot as plt
 plt.bar(x.collect(), y.map(lambda x: x * 2).collect(), color='#D94426')
 plt.show()
+```
+
+## Some useful commands
+
+### Check where Jupyter is reading its configuration files
+
+```bash
+jupyter --paths
+
+config:
+    /Users/mcoira/.jupyter
+    /Users/mcoira/.pyenv/versions/3.6.0/envs/ipython3/etc/jupyter
+    /usr/local/etc/jupyter
+    /etc/jupyter
+data:
+    /Users/mcoira/Library/Jupyter
+    /Users/mcoira/.pyenv/versions/3.6.0/envs/ipython3/share/jupyter
+    /usr/local/share/jupyter
+    /usr/share/jupyter
+runtime:
+    /Users/mcoira/Library/Jupyter/runtime
+```
+
+### pyenv which
+
+Displays the full path to the executable that pyenv will invoke when you run the given command.
+
+```bash
+~$ pyenv which python
+/Users/mikel/.pyenv/versions/3.6.0/bin/python
+
+~$ pyenv which python2
+/Users/mikel/.pyenv/versions/2.7.13/bin/python2
+
+~$ pyenv which ipython3
+/Users/mcoira/.pyenv/versions/ipython3/bin/ipython3
+
+~$ pyenv which ipython2
+/Users/mikel/.pyenv/versions/ipython2/bin/ipython2
+```
+
+### pyenv local
+
+Sets the Python version to be used by a specific application. This command writes the specified version number to the `.python-version` file in the in the current directory. This version overrides the global version and is used for the current directory and all its sub-directories.
+
+```
+$ pyenv local system
+```
+
+You can also unset the local version with the following command. This deletes the `.python-version` file from the current directory.
+
+```
+$ pyenv local --unset
+```
+
+When run without a version number, it displays the currently configured local version.
+
+```
+$ pyenv local
+```
+
+### Check libraries availability
+
+```
+ipython
+In [1]: import numpy
+In [2]: print numpy.version.full_version
+In [3]: import scipy
+In [4]: print scipy.version.full_version
+In [5]: import pandas
+In [6]: print pandas.version.version
+In [7]: import nltk
+In [8]: print nltk.version_info
+In [9]: import matplotlib
+In [10]: print matplotlib.__version__
 ```
