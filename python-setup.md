@@ -1,27 +1,28 @@
 # Setting up Python environments, Jupyter notebooks and Pyspark
 
-- [Installing Homebrew](#Installing-Homebrew)
-- [Installing python for common purposes \(or not\)](#Installing-python-for-common-purposes-\(or-not\))
-- Installing pandoc
-- Step 1: Install pyenv, virtualenv, and pyenv-virtualenv
-- Step 2: Create an isolated python environment
-  - See all available python versions for pyenv
-  - Install the python versions you need
-  - Potential errors installing python version
-- Step 3: Creating virtual environments
-- Step 4: Configuring virtual evironments
-- Installing and configuring Spark
-  - Downloading Spark
-  - Configuring PySpark with IPython Shell
-  - Creating pyspark kernel
-  - Configuring PySpark with Jupyter Notebook
-  - Confirming installation on Jupyter kernel list
-  - The final check of Pyspark-Jupyter combo
-- Some useful commands
-  - Check where Jupyter is reading its configuration files
-  - pyenv which
-  - pyenv local
-  - Check libraries availability
+* [Setting up Python environments, Jupyter notebooks and Pyspark](#setting-up-python-environments-jupyter-notebooks-and-pyspark)
+  * [Installing Homebrew](#installing-homebrew)
+  * [Installing python for common purposes (or not)](#installing-python-for-common-purposes-or-not)
+  * [Installing pandoc](#installing-pandoc)
+  * [Step 1: Install pyenv, virtualenv, and pyenv-virtualenv](#step-1-install-pyenv-virtualenv-and-pyenv-virtualenv)
+  * [Step 2: Create an isolated python environment](#step-2-create-an-isolated-python-environment)
+    * [See all available python versions for pyenv](#see-all-available-python-versions-for-pyenv)
+    * [Install the python versions you need](#install-the-python-versions-you-need)
+    * [Potential errors installing python version](#potential-errors-installing-python-version)
+  * [Step 3: Creating virtual environments](#step-3-creating-virtual-environments)
+  * [Step 4: Configuring virtual evironments](#step-4-configuring-virtual-evironments)
+  * [Installing and configuring Spark](#installing-and-configuring-spark)
+    * [Downloading Spark](#downloading-spark)
+    * [Configuring PySpark with IPython Shell](#configuring-pyspark-with-ipython-shell)
+    * [Creating pyspark kernel](#creating-pyspark-kernel)
+    * [Configuring PySpark with Jupyter Notebook](#configuring-pyspark-with-jupyter-notebook)
+    * [Confirming installation on Jupyter kernel list](#confirming-installation-on-jupyter-kernel-list)
+    * [The final check of Pyspark-Jupyter combo](#the-final-check-of-pyspark-jupyter-combo)
+  * [Some useful commands](#some-useful-commands)
+    * [Check where Jupyter is reading its configuration files](#check-where-jupyter-is-reading-its-configuration-files)
+    * [pyenv which](#pyenv-which)
+    * [pyenv local](#pyenv-local)
+    * [Check libraries availability](#check-libraries-availability)
 
 Some info beforehand
 * [pyEnv Command Reference](https://github.com/pyenv/pyenv/blob/master/COMMANDS.md)
