@@ -56,16 +56,15 @@ brew install pyenv
 # https://github.com/pyenv/pyenv-virtualenv
 brew install pyenv-virtualenv
 
-# pyenv-virtualenvwrapper an alternative approach to manage virtualenvs from pyenv.
-# https://github.com/pyenv/pyenv-virtualenvwrapper
-brew install pyenv-virtualenvwrapper
-
 # add to your .bashrc the following:
 echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
+echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bash_profile
+TODO:
+REMOVE 
 # if we use virtualenv we should initialize it (https://github.com/yyuu/pyenv-virtualenv#installation)
 # unless we use pyenv-virtualenvwrapper because activate both extensions causes conflicts (https://github.com/yyuu/pyenv-virtualenvwrapper/issues/28#issuecomment-177051559)
 # echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bash_profile
-echo 'pyenv virtualenvwrapper_lazy' >> ~/.bash_profile
+#echo 'pyenv virtualenvwrapper_lazy' >> ~/.bash_profile
 ```
 
 ## Step 2: Create an isolated python environment
@@ -79,9 +78,7 @@ pyenv install --list
 ### Install the python versions you need
 
 ```bash
-# pyenv install anaconda3-4.3.0
-pyenv install 2.7.13
-pyenv install 3.6.0
+pyenv install 3.6.4
 ```
 
 ### Potential errors installing python version
@@ -116,34 +113,12 @@ More problems can be discover [here](https://github.com/yyuu/pyenv/wiki/Common-b
 Jupyter supports many kernels. This allows a single Jupyter install to create notebooks for Python2, Python3, R, Bash and many other languages
 
 ```bash
-# spark 2.1 runs over python 3.4+
-#pyenv virtualenv anaconda3-4.3.0 anaconda3
-pyenv virtualenv 2.7.13 ipython2
 pyenv virtualenv 3.6.0 ipython3
-pyenv virtualenv 3.6.0 tools3
 ```
 
 ## Step 4: Configuring virtual evironments
 
 ```bash
-
-pyenv activate ipython2
-# enable kernel for python 2
-pip install ipykernel
-python -m ipykernel install --user
-# install libraries
-pip install numpy scipy matplotlib pandas nltk
-pyenv deactivate
-
-#pyenv activate anaconda3
-#pip install ipython
-#pip install ipykernel
-#pip install numpy scipy matplotlib pandas nltk
-#conda install -c dato-internals graphlab-create
-#pip install pyldavis
-#pip install sphinx sphinx_rtd_theme nbsphinx
-#pip install Jinja2
-#pyenv deactivate
 
 pyenv activate ipython3
 # enable kernel for python 3
@@ -161,15 +136,12 @@ pip install xlrd # Working with Excel Files in Python - http://www.python-excel.
 pip install bs4 # Beautiful Soup is a Python library for pulling data out of HTML and XML files - ttps://www.crummy.com/software/BeautifulSoup/
 pip install dbfread # Read DBF Files with Python - https://dbfread.readthedocs.io/en/latest/
 pip install pyldavis
+pip install pyyaml
 pyenv deactivate
 
 # Now let’s install tools which run on Python3
-pyenv activate tools3
+pyenv activate jupyter
 pip install jupyter
-pip install hovercraft
-pip install SimpleHTTPServer 
-pip install scrapy
-pip install Pygments
 pyenv deactivate
 
 ## toree is not supporting spark >= 2.0 so we can't use it yet
@@ -180,7 +152,7 @@ pyenv deactivate
 Finally, it’s time to make all Python versions and special virtualenvs work with each other.
 
 ```bash
-pyenv global 3.6.0 2.7.13 ipython3 ipython2 tools3
+pyenv global 3.6.4 ipython3
 ```
 
 Then you have to install libspatialindex with Brew using the following formula `brew install spatialindex` or you can compile it:
@@ -192,6 +164,31 @@ cd spatialindex-src-1.8.5/
 su
 ./configure; make; make install
 sudo ldconfig
+```
+
+## Installing CLI tools with [pipsi](https://github.com/mitsuhiko/pipsi)
+
+```bash
+# Download the pipsi installer script from github
+$ curl -O https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py
+
+# Read about the --src option in the help menu
+$ python get-pipsi.py --help
+
+# Run the installer script to get the master branch from github
+$ python get-pipsi.py --src=git+https://github.com/mitsuhiko/pipsi.git#egg=pipsi
+```
+
+```bash
+echo 'export PATH=/Users/mcoira/.local/bin:$PATH' >> ~/.bash_profile
+```
+
+```bash
+# Now let’s install tools which run on cli
+pipsi install hovercraft
+pipsi install SimpleHTTPServer 
+pipsi install scrapy
+pipsi install Pygments
 ```
 
 ## Installing and configuring Spark
