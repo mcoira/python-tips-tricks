@@ -59,12 +59,6 @@ brew install pyenv-virtualenv
 # add to your .bashrc the following:
 echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
 echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bash_profile
-TODO:
-REMOVE 
-# if we use virtualenv we should initialize it (https://github.com/yyuu/pyenv-virtualenv#installation)
-# unless we use pyenv-virtualenvwrapper because activate both extensions causes conflicts (https://github.com/yyuu/pyenv-virtualenvwrapper/issues/28#issuecomment-177051559)
-# echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bash_profile
-#echo 'pyenv virtualenvwrapper_lazy' >> ~/.bash_profile
 ```
 
 ## Step 2: Create an isolated python environment
@@ -136,7 +130,6 @@ pip install Pillow # The friendly PIL fork (Python Imaging Library) - http://pil
 pip install xlrd # Working with Excel Files in Python - http://www.python-excel.org/
 pip install bs4 # Beautiful Soup is a Python library for pulling data out of HTML and XML files - ttps://www.crummy.com/software/BeautifulSoup/
 pip install dbfread # Read DBF Files with Python - https://dbfread.readthedocs.io/en/latest/
-#pip install pyldavis
 pip install pyyaml
 pyenv deactivate
 
