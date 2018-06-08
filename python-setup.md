@@ -113,7 +113,8 @@ More problems can be discover [here](https://github.com/yyuu/pyenv/wiki/Common-b
 Jupyter supports many kernels. This allows a single Jupyter install to create notebooks for Python2, Python3, R, Bash and many other languages
 
 ```bash
-pyenv virtualenv 3.6.0 ipython3
+pyenv virtualenv 3.6.4 ipython3
+pyenv virtualenv 3.6.4 jupyter
 ```
 
 ## Step 4: Configuring virtual evironments
@@ -135,7 +136,7 @@ pip install Pillow # The friendly PIL fork (Python Imaging Library) - http://pil
 pip install xlrd # Working with Excel Files in Python - http://www.python-excel.org/
 pip install bs4 # Beautiful Soup is a Python library for pulling data out of HTML and XML files - ttps://www.crummy.com/software/BeautifulSoup/
 pip install dbfread # Read DBF Files with Python - https://dbfread.readthedocs.io/en/latest/
-pip install pyldavis
+#pip install pyldavis
 pip install pyyaml
 pyenv deactivate
 
@@ -152,7 +153,7 @@ pyenv deactivate
 Finally, it’s time to make all Python versions and special virtualenvs work with each other.
 
 ```bash
-pyenv global 3.6.4 ipython3
+pyenv global 3.6.4 ipython3 jupyter
 ```
 
 Then you have to install libspatialindex with Brew using the following formula `brew install spatialindex` or you can compile it:
@@ -206,12 +207,6 @@ export PATH=$SPARK_HOME/bin:$PATH
 ### Configuring PySpark with IPython Shell
 
 ```bash
-#pyenv activate anaconda3
-#ipython profile create pyspark
-#pyenv deactivate
-#pyenv activate ipython2
-#ipython2 profile create pyspark
-#pyenv deactivate
 pyenv activate ipython3
 ipython profile create pyspark
 pyenv deactivate
