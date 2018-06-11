@@ -160,6 +160,24 @@ su
 sudo ldconfig
 ```
 
+## Enabling creation of temporal virtual environments
+
+Edit your `.bash_profile` to create this two functions:
+
+```bash
+    function pyenv-tmp() {
+        pyenv_tmp_name="tmp-"$(cat /dev/urandom | env LC_CTYPE=C tr -dc a-zA-Z0-9 | head -c 16; echo)
+        pyenv virtualenv $(python --version 2>&1 | cut -c 8-20) $pyenv_tmp_name
+        pyenv activate $pyenv_tmp_name
+    }
+
+    function pyenv-tmp-cleanup() {
+        for val in $(pyenv versions | grep "/envs/tmp-"); do
+            pyenv uninstall $val
+        done
+    }
+```
+
 ## Installing CLI tools with [pipsi](https://github.com/mitsuhiko/pipsi)
 
 ```bash
@@ -183,6 +201,7 @@ pipsi install hovercraft
 pipsi install SimpleHTTPServer 
 pipsi install scrapy
 pipsi install Pygments
+pipsi install slack-export-viewer
 ```
 
 ## Installing and configuring Spark
@@ -354,4 +373,12 @@ In [7]: import nltk
 In [8]: print nltk.version_info
 In [9]: import matplotlib
 In [10]: print matplotlib.__version__
+```
+
+## APENDIX
+
+Utils usage:
+
+```bash
+slack-export-viewer -z /path/to/export/zip
 ```
