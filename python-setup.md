@@ -127,7 +127,9 @@ pip install sphinx sphinx_rtd_theme nbsphinx Jinja2
 pip install requests
 pip install tesseract-ocr pytesseract
 pip install Pillow # The friendly PIL fork (Python Imaging Library) - http://pillow.readthedocs.io/en/latest/
-pip install xlrd # Working with Excel Files in Python - http://www.python-excel.org/
+# http://www.python-excel.org/
+pip install xlrd # This package is for reading data and formatting information from older Excel files (ie: .xls)
+pip install openpyxl # The recommended package for reading and writing Excel 2010 files (ie: .xlsx)
 pip install bs4 # Beautiful Soup is a Python library for pulling data out of HTML and XML files - ttps://www.crummy.com/software/BeautifulSoup/
 pip install dbfread # Read DBF Files with Python - https://dbfread.readthedocs.io/en/latest/
 pip install pyyaml
