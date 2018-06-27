@@ -133,6 +133,8 @@ pip install openpyxl # The recommended package for reading and writing Excel 201
 pip install bs4 # Beautiful Soup is a Python library for pulling data out of HTML and XML files - ttps://www.crummy.com/software/BeautifulSoup/
 pip install dbfread # Read DBF Files with Python - https://dbfread.readthedocs.io/en/latest/
 pip install pyyaml
+pip install plotly
+pip install cufflinks
 pyenv deactivate
 
 # Now let’s install tools which run on Python3
